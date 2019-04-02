@@ -1,6 +1,7 @@
 com\pinyougou\pojo\TbContentCategoryExample$GeneratedCriteria.class
 com\pinyougou\pojo\TbItemCatExample.class
 com\pinyougou\pojo\TbItemExample$Criterion.class
+com\pinyougou\entity\PageResult.class
 com\pinyougou\pojo\TbContentCategoryExample.class
 com\pinyougou\pojo\TbTypeTemplate.class
 com\pinyougou\pojo\TbBrand.class
@@ -8,6 +9,7 @@ com\pinyougou\pojo\TbGoodsExample$GeneratedCriteria.class
 com\pinyougou\pojo\TbOrderItemExample$Criteria.class
 com\pinyougou\pojo\TbSeckillGoods.class
 com\pinyougou\pojo\TbAreasExample$Criteria.class
+com\pinyougou\entity\Result.class
 com\pinyougou\pojo\TbFreightTemplateExample$GeneratedCriteria.class
 com\pinyougou\pojo\TbFreightTemplateExample.class
 com\pinyougou\pojo\TbSeckillGoodsExample$GeneratedCriteria.class
