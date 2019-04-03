@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [04/Apr/2019:00:37:50 +0800] "GET /admin/type_template.html HTTP/1.1" 200 8122 http-bio-9101-exec-1 95
+0:0:0:0:0:0:0:1 - - [04/Apr/2019:00:37:50 +0800] "GET /js/controller/typeTemplateController.js HTTP/1.1" 200 2193 http-bio-9101-exec-3 3
+0:0:0:0:0:0:0:1 - - [04/Apr/2019:00:37:50 +0800] "GET /js/service/brandService.js HTTP/1.1" 200 845 http-bio-9101-exec-2 3
+0:0:0:0:0:0:0:1 - - [04/Apr/2019:00:37:52 +0800] "GET /brand/selectOptionList.do HTTP/1.1" 200 585 http-bio-9101-exec-4 1390
+0:0:0:0:0:0:0:1 - - [04/Apr/2019:00:37:52 +0800] "POST /typeTemplate/search.do?page=1&rows=10 HTTP/1.1" 200 1005 http-bio-9101-exec-5 1178

@@ -11,6 +11,7 @@ import com.pinyougou.sellergoods.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -68,5 +69,10 @@ public class BrandServiceImpl implements BrandService {
         //sql拼接,参数为null即为无条件查询
         Page<TbBrand> pages =(Page<TbBrand>) brandMapper.selectByExample(tbBrandExample);
         return new PageResult(pages.getTotal(),pages.getResult());
+    }
+
+    @Override
+    public List<Map> selectOptionList() {
+        return brandMapper.selectOptionList();
     }
 }
