@@ -1,5 +1,6 @@
 package com.pinyougou.manager.controller;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.pojo.TbSpecificationOption;
 import com.pinyougou.pojogroup.Specification;
@@ -111,6 +112,15 @@ public class SpecificationController {
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbSpecification specification, int page, int rows  ){
 		return specificationService.findPage(specification, page, rows);		
+	}
+
+	/**
+	 *
+	 * @return
+	 */
+	@RequestMapping("/selectSpecification")
+	public List<Map> selectSpecificationList(){
+		return specificationService.specificationList();
 	}
 	
 }

@@ -60,7 +60,7 @@ app.controller('brandController',function ($scope,$controller,brandService) {
     $scope.search=function (page,rows) {
         brandService.searchMethod(page,rows,$scope.searchEntity).success(function (response) {
             $scope.list=response.rows;
-            $scope.paginationConf.totalItems=response.tatal;//更新总记录数量
+            $scope.paginationConf.totalItems=response.total;//更新总记录数量
         });
     }
 

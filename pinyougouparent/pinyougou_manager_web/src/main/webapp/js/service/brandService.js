@@ -24,4 +24,5 @@ app.service('brandService',function ($http) {
         return $http.get('../brand/selectOptionList.do');
     }
 
+
 });

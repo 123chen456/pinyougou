@@ -41,7 +41,7 @@ app.controller('specificationController' ,function($scope,$controller,specificat
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if(response.flag){
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
@@ -78,9 +78,10 @@ app.controller('specificationController' ,function($scope,$controller,specificat
 		);
 	}
 
-	//新增规格(在点击新建时初始化 该数组，点击增加时 添加{}一个空对象 页面添加一行)
-	$scope.addTableRow=function () {
-		$scope.entity.specificationOptionList.push({});
+
+    //新增规格(在点击新建时初始化 该数组，点击增加时 添加{}一个空对象 页面添加一行)
+    $scope.addTableRow=function () {
+        $scope.entity.specificationOptionList.push({});
     }
 
     //删除规格(点击删除时 传入索引($index) 在数组中删除该对象)
@@ -88,5 +89,6 @@ app.controller('specificationController' ,function($scope,$controller,specificat
         var index=$scope.entity.specificationOptionList.indexOf(id); //获取下标在数组中的索引,默认从0开始
         $scope.entity.specificationOptionList.splice(index,1); //根据索引进行删除
     }
-    
+
+
 });	

@@ -1,5 +1,5 @@
  //控制层 
-app.controller('typeTemplateController' ,function($scope,$controller,typeTemplateService,brandService){
+app.controller('typeTemplateController' ,function($scope,$controller,typeTemplateService,brandService,specificationService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -26,8 +26,14 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
 	$scope.findOne=function(id){				
 		typeTemplateService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
-			}
+				$scope.entity= response;
+
+				//需要将查询出来的字符串转换为json对象
+                $scope.entity.brandIds=  JSON.parse($scope.entity.brandIds);//转换品牌列表
+                $scope.entity.specIds=  JSON.parse($scope.entity.specIds);//转换规格列表
+                $scope.entity.customAttributeItems= JSON.parse($scope.entity.customAttributeItems);//转换扩展属性
+
+            }
 		);				
 	}
 	
@@ -41,7 +47,8 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if(response.flag){
+					alert("成功");
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
@@ -87,6 +94,28 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
                 $scope.brandList={data:response};
             }
         );
+    }
+    //初始化规格列表
+    $scope.specificationList={data:[]};//品牌列表
+	$scope.findSpecificationList=function () {
+		specificationService.findSpecificationList().success(
+			function (response) {
+                $scope.specificationList={data:response};
+        	}
+        )
+    }
+
+
+
+    //新增规格(在点击新建时初始化 该数组，点击增加时 添加{}一个空对象 页面添加一行)
+    $scope.addTableRow=function () {
+        $scope.entity.customAttributeItems.push({});
+    }
+
+    //删除规格(点击删除时 传入索引($index) 在数组中删除该对象)
+    $scope.deleTableRow=function (id) {
+        var index=$scope.entity.customAttributeItems.indexOf(id); //获取下标在数组中的索引,默认从0开始
+        $scope.entity.customAttributeItems.splice(index,1); //根据索引进行删除
     }
 
 

@@ -41,7 +41,7 @@ app.controller('specificationController' ,function($scope,$controller,specificat
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if(response.flag){
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
@@ -88,5 +88,5 @@ app.controller('specificationController' ,function($scope,$controller,specificat
         var index=$scope.entity.specificationOptionList.indexOf(id); //获取下标在数组中的索引,默认从0开始
         $scope.entity.specificationOptionList.splice(index,1); //根据索引进行删除
     }
-    
+
 });	

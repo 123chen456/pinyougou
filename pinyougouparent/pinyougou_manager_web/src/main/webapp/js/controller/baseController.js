@@ -41,4 +41,17 @@ app.controller('baseController',function ($scope) {
         }
     }
 
+    //根据传入的参数 提取出json字符串中的特定属性(将字符串转为对象,然后对象[属性名])进行提取
+    $scope.jsonStringPickType=function (jsonString,key) {
+        var json=JSON.parse(jsonString);//将json字符串转换为json对象
+        var value="";
+        for(var i=0;i<json.length;i++){
+            if(i>0){
+                value+=","
+            }
+            value+=json[i][key];
+        }
+        return value;
+    }
+
 })
