@@ -1,4 +1,5 @@
 com\pinyougou\manager\controller\ItemController.class
+com\pinyougou\manager\controller\LoginController.class
 com\pinyougou\manager\controller\ItemCatController.class
 com\pinyougou\manager\controller\BrandController.class
 com\pinyougou\manager\controller\SellerController.class

@@ -1,5 +1,5 @@
  //控制层 
-app.controller('sellerController' ,function($scope,$controller   ,sellerService){	
+app.controller('sellerController' ,function($scope,$controller ,sellerService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -76,5 +76,18 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}			
 		);
 	}
-    
-});	
+    //审核 updateStatuss
+    $scope.updateStatus=function(sellerId,status){
+		alert("1111");
+        sellerService.updateStatuss(sellerId,status).success(
+            function(response){
+                if(response.flag){
+                    $scope.reloadList();//刷新列表
+                }else{
+                    alert("失败");
+                }
+            }
+        );
+    }
+
+});

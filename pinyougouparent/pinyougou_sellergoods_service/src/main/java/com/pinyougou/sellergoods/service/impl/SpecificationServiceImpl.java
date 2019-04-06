@@ -75,7 +75,7 @@ public class SpecificationServiceImpl implements SpecificationService {
 	public void update(Specification specification){
 	    //保存修改的规格
 		specificationMapper.updateByPrimaryKey(specification.getSpecification());
-		//删除原有的规格（数据库不留没用的数据）
+		//删除原有的规格选项（数据库不留没用的数据）
         TbSpecificationOptionExample example=new TbSpecificationOptionExample();
         com.pinyougou.pojo.TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
         criteria.andSpecIdEqualTo(specification.getSpecification().getId());//指定规格ID为条件

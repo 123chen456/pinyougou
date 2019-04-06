@@ -1,4 +1,5 @@
 package com.pinyougou.sellergoods.service.impl;
+import java.util.Date;
 import java.util.List;
 
 import com.pinyougou.entity.PageResult;
@@ -47,6 +48,9 @@ public class SellerServiceImpl implements SellerService {
 	 */
 	@Override
 	public void add(TbSeller seller) {
+		//状态值：  0：未审核   1：已审核   2：审核未通过   3：关闭
+		seller.setStatus("0");
+		seller.setCreateTime(new Date());
 		sellerMapper.insert(seller);		
 	}
 
@@ -57,8 +61,8 @@ public class SellerServiceImpl implements SellerService {
 	@Override
 	public void update(TbSeller seller){
 		sellerMapper.updateByPrimaryKey(seller);
-	}	
-	
+	}
+
 	/**
 	 * 根据ID获取实体
 	 * @param id
@@ -83,11 +87,11 @@ public class SellerServiceImpl implements SellerService {
 		@Override
 	public PageResult findPage(TbSeller seller, int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		
+
 		TbSellerExample example=new TbSellerExample();
 		Criteria criteria = example.createCriteria();
-		
-		if(seller!=null){			
+
+		if(seller!=null){
 						if(seller.getSellerId()!=null && seller.getSellerId().length()>0){
 				criteria.andSellerIdLike("%"+seller.getSellerId()+"%");
 			}
@@ -154,11 +158,22 @@ public class SellerServiceImpl implements SellerService {
 			if(seller.getBankName()!=null && seller.getBankName().length()>0){
 				criteria.andBankNameLike("%"+seller.getBankName()+"%");
 			}
-	
+
 		}
-		
-		Page<TbSeller> page= (Page<TbSeller>)sellerMapper.selectByExample(example);		
+
+		Page<TbSeller> page= (Page<TbSeller>)sellerMapper.selectByExample(example);
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	/**
+	 * 更改状态
+	 * @param sellerId
+	 * @param status
+	 */
+	public void updateStatus(String sellerId, String status) {
+		TbSeller seller = sellerMapper.selectByPrimaryKey(sellerId);
+		seller.setStatus(status);
+		sellerMapper.updateByPrimaryKey(seller);
+	}
+
 }
