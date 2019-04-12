@@ -11,7 +11,7 @@ app.controller('baseController',function ($scope) {
 
     }
 
-    //重新加载列表数据
+    //重新加载列表数据  searchEntity.specName
     $scope.reloadList=function () {
         //切换页码
         //$scope.findPage($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage)

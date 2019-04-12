@@ -66,7 +66,7 @@ app.controller('specificationController' ,function($scope,$controller,specificat
 		);				
 	}
 	
-	$scope.searchEntity={};//定义搜索对象 
+	$scope.searchEntity={};//定义搜索对象
 	
 	//搜索
 	$scope.search=function(page,rows){			

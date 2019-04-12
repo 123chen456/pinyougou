@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.pojo.TbGoods;
+import com.pinyougou.pojogroup.Goods;
 
 /**
  * 服务层接口
@@ -28,7 +29,7 @@ public interface GoodsService {
 	/**
 	 * 增加
 	*/
-	public void add(TbGoods goods);
+	public void add(Goods goods);
 	
 	
 	/**
@@ -42,7 +43,7 @@ public interface GoodsService {
 	 * @param id
 	 * @return
 	 */
-	public TbGoods findOne(Long id);
+	public Goods findOne(Long id);
 	
 	
 	/**
@@ -58,5 +59,12 @@ public interface GoodsService {
 	 * @return
 	 */
 	public PageResult findPage(TbGoods goods, int pageNum, int pageSize);
-	
+
+    /**
+     * 根据ID获取实体
+     * @param id
+     * @return
+     */
+
+
 }

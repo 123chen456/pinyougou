@@ -25,7 +25,7 @@ app.service('specificationService',function($http){
 	this.dele=function(ids){
 		return $http.get('../specification/delete.do?ids='+ids);
 	}
-	//搜索
+	//搜索   searchEntity.specName
 	this.search=function(page,rows,searchEntity){
 		return $http.post('../specification/search.do?page='+page+"&rows="+rows, searchEntity);
 	}

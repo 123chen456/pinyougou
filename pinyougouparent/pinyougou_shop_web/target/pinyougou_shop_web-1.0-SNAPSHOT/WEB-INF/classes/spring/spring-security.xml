@@ -17,7 +17,9 @@
     <!-- 页面拦截规则 -->
     <http use-expressions="false">
         <intercept-url pattern="/**" access="ROLE_SELLER"/>
-        <form-login login-page="/shoplogin.html" default-target-url ="/admin/index.html" authentication-failure-url="/shoplogin.html"
+        <form-login login-page="/shoplogin.html"
+                    default-target-url ="/admin/index.html"
+                    authentication-failure-url="/shoplogin.html"
                     always-use-default-target="true"/>
         <logout/>
         <csrf disabled="true"/>
@@ -46,6 +48,6 @@
     <!-- 引用dubbo 服务 -->
 
     <dubbo:application name="pinyougou-shop-web" />
-    <dubbo:registry address="zookeeper://192.168.25.129:2181"/>
+    <dubbo:registry address="zookeeper://192.168.25.153:2181"/>
     <dubbo:annotation package="com.pinyougou.service" />
 </beans:beans>

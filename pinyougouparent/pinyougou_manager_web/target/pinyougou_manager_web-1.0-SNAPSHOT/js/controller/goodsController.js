@@ -68,7 +68,7 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
+	$scope.search=function(page,rows){
 		goodsService.search(page,rows,$scope.searchEntity).success(
 			function(response){
 				$scope.list=response.rows;	

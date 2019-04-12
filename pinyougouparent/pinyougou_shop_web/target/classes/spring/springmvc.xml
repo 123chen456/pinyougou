@@ -7,8 +7,7 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-    <mvc:annotation-driven>
+    <mvc:annotation-driven>   <!--注解支持-->
         <mvc:message-converters register-defaults="true">
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
                 <property name="supportedMediaTypes" value="application/json"/>
@@ -24,8 +23,18 @@
     <!-- 引用dubbo 服务 -->
 
     <dubbo:application name="pinyougou-shop-web" />
-    <dubbo:registry address="zookeeper://192.168.25.129:2181"/>
-    <dubbo:annotation package="com.pinyougou.shop.controller" />
+    <dubbo:registry address="zookeeper://192.168.25.153:2181"/>
+    <dubbo:annotation package="com.pinyougou.shop.controller" />  <!--集成了spring的包扫描-->
+
+    <!--引入fastDFS的配置文件(此处主要用于 @value注入)-->
+    <context:property-placeholder location="classpath:properties/application.properties"/>
+
+    <!-- 配置多媒体解析器 (文件上传的编码及限定大小)-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+        <property name="maxUploadSize" value="5242880"></property>
+    </bean>
 
 </beans>
 
