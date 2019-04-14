@@ -30,8 +30,14 @@ app.controller('goodsController' ,function($scope,$controller,$location,goodsSer
         }
 		goodsService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
-			}
+				$scope.entity= response;
+                //向富文本编辑器添加商品介绍
+                editor.html($scope.entity.goodsDesc.introduction);
+                //显示图片列表
+                $scope.entity.goodsDesc.itemImages=
+                    JSON.parse($scope.entity.goodsDesc.itemImages);
+
+            }
 		);				
 	}
 	//批量删除 

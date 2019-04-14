@@ -11,6 +11,8 @@ import com.pinyougou.pojo.TbItemCat;
 import com.pinyougou.pojo.TbItemCatExample;
 import com.pinyougou.pojo.TbItemCatExample.Criteria;
 import com.pinyougou.sellergoods.service.ItemCatService;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.solr.core.SolrTemplate;
 
 
 /**
@@ -97,13 +99,20 @@ public class ItemCatServiceImpl implements ItemCatService {
 		Page<TbItemCat> page= (Page<TbItemCat>)itemCatMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-
+	@Autowired
+	private RedisTemplate redisTemplate;
 	@Override
 	public List<TbItemCat> findByParentId(Long parentId) {
 		TbItemCatExample tbItemCatExample = new TbItemCatExample();
 		Criteria criteria = tbItemCatExample.createCriteria();
 		criteria.andParentIdEqualTo(parentId);
-		return itemCatMapper.selectByExample(tbItemCatExample);
+		//缓存商品名称和模板ID
+        List<TbItemCat> tbItemCats = findAll();
+        for (TbItemCat tbItemCat : tbItemCats) {
+            redisTemplate.boundHashOps("tbItemCat").put(tbItemCat.getName(),tbItemCat.getTypeId());
+        }
+        System.out.println("更新缓存:商品分类表");
+        return itemCatMapper.selectByExample(tbItemCatExample);
 	}
 
 }
